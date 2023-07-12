@@ -1,5 +1,5 @@
 {
-	"name": "svelte-form-ui",
+	"name": "@tuentyfaiv/svelte-form-ui",
 	"version": "0.0.1",
 	"description": "Build-in forms for Svelte using @tuentyfaiv/svelte-form",
 	"type": "module",
