@@ -1,4 +1,4 @@
-import { string } from "yup";
+import { boolean, string } from "yup";
 import { REGEX_PASSWORD, REGEX_PHONE, REGEX_PHONE_CODE } from "../utils/regex.js";
 
 export const fieldsSignin = {
@@ -14,4 +14,5 @@ export const fieldsSignup = {
   phone: string().matches(REGEX_PHONE, "only-number").required("required"),
   phoneCode: string().matches(REGEX_PHONE_CODE, "invalid-code").required("required"),
   confirmPassword: fieldsSignin.password,
+  terms: boolean().oneOf([true], "required-terms").required("required"),
 };

@@ -39,8 +39,8 @@
 	"types": "./dist/index.d.ts",
 	"peerDependencies": {
 		"@emotion/css": "^11.11.2",
-		"@tuentyfaiv/svelte-form": "^0.2.4",
-		"svelte": "^4.0.0",
+		"@tuentyfaiv/svelte-form": "^0.2.7",
+		"svelte": "^4.0.5",
 		"yup": "^1.2.0"
 	},
 	"devDependencies": {
@@ -49,7 +49,7 @@
 		"@sveltejs/adapter-vercel": "^3.0.2",
 		"@sveltejs/kit": "^1.22.3",
 		"@sveltejs/package": "^2.2.0",
-		"@tuentyfaiv/svelte-form": "^0.2.6",
+		"@tuentyfaiv/svelte-form": "^0.2.7",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"eslint": "^8.44.0",
@@ -83,5 +83,9 @@
 	"bugs": {
 		"url": "https://github.com/TuentyFaiv/svelte-form-ui/issues"
 	},
-	"homepage": "https://github.com/TuentyFaiv/svelte-form-ui#readme"
+	"homepage": "https://github.com/TuentyFaiv/svelte-form-ui#readme",
+	"main": "./dist/index.js",
+	"directories": {
+		"test": "tests"
+	}
 }

@@ -93,6 +93,7 @@
       phone: "Phone",
       phoneCode: "Phone code",
       confirmPassword: "Confirm password",
+      terms: "Terms",
     }}
     showErrors
   >

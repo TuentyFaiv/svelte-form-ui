@@ -113,6 +113,10 @@
             },
           ] satisfies FieldInputForm<SignupFields>[])
         : ([] satisfies FieldInputForm<SignupFields>[])),
+      {
+        name: "terms",
+        type: "checkbox",
+      },
     ] satisfies FieldInputForm<SignupFields, "select">[]
   ).map(getTexts(texts));
 </script>
