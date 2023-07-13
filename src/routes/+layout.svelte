@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { injectGlobal } from "@emotion/css";
   import { setConfig } from "../lib/index.js";
 
   setConfig({
@@ -12,6 +13,13 @@
       secondary: "#000",
     },
   });
+
+  injectGlobal`
+    .form__box {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  `;
 </script>
 
 <main>

@@ -6,4 +6,5 @@ export type SigninFields = keyof SigninValues;
 export interface Props extends GlobalFormProps {
   submit(values: SigninValues): Promise<void>;
   texts: TextsProp<SigninFields>;
+  remember?: boolean;
 }

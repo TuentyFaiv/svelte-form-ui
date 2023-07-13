@@ -1,12 +1,14 @@
+<svelte:options immutable />
+
 <script lang="ts">
-  import { createEventDispatcher, getContext } from "svelte";
+  import { createEventDispatcher } from "svelte";
+  import { cx } from "@emotion/css";
   import { Errors, Field, faivform } from "@tuentyfaiv/svelte-form";
   import { getTexts } from "$lib/logic/utils/objects.js";
   import { fieldsSignin } from "$lib/logic/schemas/index.js";
+  import { useGlobalFormStyles } from "$lib/logic/stores/config.js";
 
-  import type { Readable } from "svelte/store";
   import type { FieldInputForm } from "$lib/logic/typing/globals/interfaces.js";
-  import type { ConfigForm } from "$lib/logic/typing/store/config.js";
   import type { Props, SigninFields } from "./SigninForm.proptypes.js";
 
   import * as stylesinternal from "./SigninForm.styles.js";
@@ -15,25 +17,41 @@
   export let context: Props["context"] = "form";
   export let showErrors: Props["showErrors"] = true;
   export let styles: Props["styles"] = undefined;
-  export let texts: Props["texts"];
+  export let remember: Props["remember"] = true;
+  export let texts: Props["texts"] = {};
 
-  const globalStyles = getContext<Readable<ConfigForm["form"]>>("formStyles");
-  $: formStyles = styles?.form ?? $globalStyles ?? stylesinternal ?? {};
+  const dispatch = createEventDispatcher<{
+    error: unknown;
+    finish: undefined;
+  }>();
+  const { remember: rememberField, ...fieldsRemaining } = fieldsSignin;
+  const globalStyles = useGlobalFormStyles();
+  $: formStyles = styles?.form ?? $globalStyles ?? {};
 
-  const store = faivform({
-    fields: fieldsSignin,
+  $: store = faivform({
+    fields: {
+      ...fieldsRemaining,
+      ...(remember ? { remember: rememberField } : {}),
+    },
     styles: {
       field: styles?.field ?? {},
       icons: styles?.icons ?? null,
     },
   });
-  const { submit: onSubmit, loading } = $store;
-  const dispatch = createEventDispatcher<{
-    error: unknown;
-    finish: undefined;
-  }>();
+  $: ({
+    submit: onSubmit,
+    loading: isLoading,
+    data,
+    errors,
+    setField,
+    check,
+    setError,
+    reset,
+    styles: stylesStore,
+  } = $store);
+  $: loading = $isLoading;
 
-  const action = onSubmit(submit, {
+  $: action = onSubmit(submit, {
     error(err) {
       dispatch("error", err);
     },
@@ -53,36 +71,63 @@
         name: "password",
         type: "password",
       },
+      ...(remember
+        ? ([
+            {
+              name: "remember",
+              type: "checkbox",
+            },
+          ] satisfies FieldInputForm<SigninFields>[])
+        : ([] satisfies FieldInputForm<SigninFields>[])),
     ] satisfies FieldInputForm<SigninFields>[]
   ).map(getTexts(texts));
 </script>
 
-{#if $loading}
-  <slot name="loading" />
+{#if loading}
+  <slot name="loading" {loading} />
 {/if}
-
-<form on:submit|preventDefault={action} class={formStyles.container}>
-  <div class={formStyles.box}>
-    <slot>
-      {#each fields as field (field.name)}
-        <Field {...field} {context}>
-          <svelte:fragment slot="error" let:error>
-            <slot name="error-field" {error}>
-              {error}
-            </slot>
-          </svelte:fragment>
-        </Field>
-      {/each}
-    </slot>
+<form
+  on:submit|preventDefault={action}
+  class={cx(stylesinternal.container, formStyles.container ?? "")}
+>
+  <div class={cx(stylesinternal.box, formStyles.box ?? "")}>
+    {#key action}
+      <slot
+        {fields}
+        {data}
+        {errors}
+        {setField}
+        {setError}
+        {check}
+        {reset}
+        styles={stylesStore}
+      >
+        {#each fields as field (field.name)}
+          <Field {...field} {context}>
+            <slot name="field" />
+            <svelte:fragment slot="error" let:error>
+              <slot name="error-field" {error}>
+                {error}
+              </slot>
+            </svelte:fragment>
+          </Field>
+        {/each}
+      </slot>
+    {/key}
   </div>
-  <button class={formStyles.submit} type="submit">
+  <button
+    class={cx(stylesinternal.submit, formStyles.submit ?? "")}
+    type="submit"
+  >
     <slot name="submit">Signin</slot>
   </button>
-  <Errors show={showErrors} {context}>
-    <svelte:fragment slot="error" let:error let:field>
-      <slot name="error-list" {error} {field}>
-        {`${field}: ${error}`}
-      </slot>
-    </svelte:fragment>
-  </Errors>
+  {#key action}
+    <Errors show={showErrors} {context}>
+      <svelte:fragment slot="error" let:error let:field>
+        <slot name="error-list" {error} {field}>
+          {`${field}: ${error}`}
+        </slot>
+      </svelte:fragment>
+    </Errors>
+  {/key}
 </form>

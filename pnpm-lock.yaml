@@ -21,8 +21,8 @@ devDependencies:
     specifier: ^2.2.0
     version: 2.2.0(svelte@4.0.5)(typescript@5.1.6)
   '@tuentyfaiv/svelte-form':
-    specifier: ^0.2.7
-    version: 0.2.7(@emotion/css@11.11.2)(svelte@4.0.5)(yup@1.2.0)
+    specifier: ^0.2.8
+    version: 0.2.8(@emotion/css@11.11.2)(svelte@4.0.5)(yup@1.2.0)
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.0.0
     version: 6.0.0(@typescript-eslint/parser@6.0.0)(eslint@8.44.0)(typescript@5.1.6)
@@ -673,8 +673,8 @@ packages:
       - supports-color
     dev: true
 
-  /@tuentyfaiv/svelte-form@0.2.7(@emotion/css@11.11.2)(svelte@4.0.5)(yup@1.2.0):
-    resolution: {integrity: sha512-GZBMlID23p60B8a4xp2T5IAtycZIQY7k5NMwHLY7Txl43Wigxg95wjHSFSph7sUB8tbwDgATrWDbg3NF456TUg==}
+  /@tuentyfaiv/svelte-form@0.2.8(@emotion/css@11.11.2)(svelte@4.0.5)(yup@1.2.0):
+    resolution: {integrity: sha512-cUPA8Op828cCEi1A/0r88QDRDOhZnFVGbkAowLfYWQi3wNS1IHyyz8ZVXxCKwUKaiG393U4uPCvXG+cp3fc1uA==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0', pnpm: '>=7.0.0'}
     peerDependencies:
       '@emotion/css': ^11.11.2

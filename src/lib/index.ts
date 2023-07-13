@@ -1,4 +1,4 @@
-export { setConfig } from "./logic/stores/index.js";
+export { setConfig, useGlobalFormStyles } from "./logic/stores/index.js";
 export { getTexts } from "./logic/utils/objects.js";
 export { fieldsSignin, fieldsSignup, fieldsContact } from "./logic/schemas/index.js";
 export {
@@ -6,7 +6,7 @@ export {
   SignupForm,
   ContactForm,
 } from "./ui/containers/index.js";
-export { NUMBERS, REGEX_PASSWORD, REGEX_PHONE, REGEX_PHONE_CODE } from "./logic/utils/regex.js";
+export { REGEX_NUMBERS, REGEX_PASSWORD, REGEX_PHONE, REGEX_PHONE_CODE } from "./logic/utils/regex.js";
 
 export type { ConfigForm } from "./logic/typing/store/config.js";
 export type { FieldInputForm } from "./logic/typing/globals/interfaces.js";

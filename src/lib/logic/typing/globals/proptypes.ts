@@ -11,12 +11,12 @@ export interface FormStyles extends ContextStyles {
 }
 
 export type TextsProp<T extends string> = {
-  [key in T]: TextProp;
+  [key in T]?: TextProp;
 };
 
 export type TextProp = string | TextPropExplicit;
 
 export interface TextPropExplicit {
-  placeholder: string;
+  placeholder?: string;
   label: string;
 }
