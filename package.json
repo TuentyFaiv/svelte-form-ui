@@ -1,6 +1,6 @@
 {
 	"name": "@tuentyfaiv/svelte-form-ui",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Built-in forms for Svelte using @tuentyfaiv/svelte-form",
 	"type": "module",
 	"scripts": {
