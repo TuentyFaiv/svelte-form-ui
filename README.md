@@ -1,10 +1,11 @@
 # Svelte Form UI
+Build-in forms for Svelte using [@tuentyfaiv/svelte-form](https://www.npmjs.com/package/@tuentyfaiv/svelte-form)
 `npm install @tuentyfaiv/svelte-form-ui @tuentyfaiv/svelte-form`
 
 ## Imports
 - ### Config 
   ```typescript
-  import { setConfig } from "@tuentyfaiv/svelte-form-ui";
+  import { setConfig, useGlobalFormStyles } from "@tuentyfaiv/svelte-form-ui";
   ```
 - ### Build-in forms
   ```typescript
@@ -27,7 +28,7 @@
   import { getTexts } from "@tuentyfaiv/svelte-form-ui";
   // Regex
   import {
-    NUMBERS,
+    REGEX_NUMBERS,
     REGEX_PASSWORD,
     REGEX_PHONE,
     REGEX_PHONE_CODE,

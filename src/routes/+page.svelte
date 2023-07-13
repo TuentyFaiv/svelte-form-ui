@@ -54,11 +54,12 @@
     submit={async (values) => {
       console.log(values);
     }}
-    texts={{
-      email: "Email",
-      password: "Password",
-    }}
     showErrors
+    styles={{
+      form: {
+        box: "signin__box",
+      },
+    }}
   >
     <svelte:fragment slot="error-field" let:error>
       {`Error field: ${error}`}
@@ -80,19 +81,6 @@
     on:choose={async ({ detail }) => {
       console.log(detail);
       detail.setField("phoneCode", "+52");
-    }}
-    texts={{
-      country: "Country",
-      email: {
-        label: "Email",
-        placeholder: "email@example.com",
-      },
-      firstName: "First name",
-      lastName: "Last name",
-      password: "Password",
-      phone: "Phone",
-      phoneCode: "Phone code",
-      confirmPassword: "Confirm password",
     }}
     showErrors
   >
@@ -121,7 +109,7 @@
       },
       name: "Name",
       phone: "Phone",
-      terms: "Terms",
+      terms: "You must accept the terms and conditions",
     }}
     showErrors
   >
@@ -133,4 +121,3 @@
     </svelte:fragment>
   </ContactForm>
 </details>
-<!-- <Field name="example" /> -->
